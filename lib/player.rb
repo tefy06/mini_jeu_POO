@@ -49,7 +49,7 @@ class HumanPlayer < Player
   end
 
   def show_state
-    puts "#{@name} a #{@life_points} et une arme de niveau #{@weapon_level}"
+    puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{@weapon_level}"
   end
 
   def compute_damage
@@ -60,27 +60,30 @@ class HumanPlayer < Player
     @new_weapon = rand(1..6)
     if @new_weapon >= @weapon_level
       @weapon_level = @new_weapon
-      puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends\n"
+      puts "Youhou ! elle est meilleure que mon arme actuelle : je la prends\n"
     else
-      puts "M@*#$... elle n'est pas mieux que ton arme actuelle..\n"
+      puts "M@*#$... elle n'est pas mieux que mon arme actuelle..\n"
     end
   end
 
   def search_health_pack
-    @rand_health = rand(1..6)
-    if @rand_health == 1
-    return "Tu n'a rien trouvé"
-    elsif @rand_health > 2 && @rand_health <= 5
-      return "Bravo tu as trouve +50 pts de vie"
+    rand_health = rand(1..6)
+    if rand_health == 1
+    return "je n'ai rien trouvé"
+  elsif rand_health >= 2 && rand_health <= 5
+
       @life_points += 50
         if @life_points > 100
-          @life_points == 100
+          @life_points = 100
         end
+        return "j'ai trouve +50 pts de vie"
       else
-      return "Waouh tu as trouvé un pack de +80 pts de vie"
+
+      @life_points += 80
         if @life_points > 100
-          @life_points == 100
+          @life_points = 100
         end
+        return "Waouh j'ai trouvé un pack de +80 pts de vie"
     end
   end
 
